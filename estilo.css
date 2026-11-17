@@ -287,3 +287,63 @@ p { margin: 0 0 1em; color: var(--texto-suave); text-wrap: pretty; }
   .momento--centro.ativo { transform: none; }
   .cartoes { grid-template-columns: 1fr; }
 }
+
+/* ══ Versão 2: conteúdo da apresentação ══════════════════════════════════ */
+/* Selo "20 anos" na abertura */
+.selo-anos { display: flex; align-items: center; gap: 12px; margin: 0 0 18px; color: var(--texto); }
+.selo-anos strong { font-family: var(--fonte-titulo); font-weight: 800; font-stretch: 125%; font-size: clamp(44px, 4.6vw, 64px); line-height: .9; color: var(--acento); text-shadow: 0 0 24px rgb(255 102 0 / .45); }
+.selo-anos span { font-size: 12px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; line-height: 1.35; color: var(--prata); }
+
+/* Números do "Sobre" */
+.numeros { list-style: none; margin: 26px 0 0; padding: 22px 0 0; border-top: 1px solid var(--linha); display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.numeros strong { display: block; font-family: var(--fonte-titulo); font-weight: 800; font-stretch: 125%; font-size: clamp(30px, 3vw, 42px); line-height: 1; color: var(--acento); }
+.numeros span { font-size: 13px; color: var(--texto-suave); }
+
+/* Públicos com ícones */
+.publicos { width: 100%; max-width: var(--largura); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.grupo h3 { font-size: 13px; font-weight: 700; font-stretch: 100%; letter-spacing: .2em; text-transform: uppercase; color: var(--prata); margin-bottom: 18px; }
+.lista-icones { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.lista-icones li {
+  display: flex; align-items: center; gap: 14px; font-weight: 600; font-size: 16.5px; color: var(--texto);
+  padding: 10px 12px; border-radius: 14px; border: 1px solid transparent; transition: background .3s, border-color .3s, transform .4s var(--ease);
+}
+.lista-icones li:hover { background: rgb(255 102 0 / .08); border-color: rgb(255 102 0 / .35); transform: translateX(4px); }
+.lista-icones svg, .area-icone {
+  flex-shrink: 0; width: 46px; height: 46px; padding: 10px; border-radius: 12px;
+  fill: none; stroke: var(--acento); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round;
+  background: rgb(255 102 0 / .1); border: 1px solid rgb(255 102 0 / .35);
+}
+.cartoes--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+/* Áreas de atuação */
+.area-icone { width: 54px; height: 54px; padding: 12px; margin-bottom: 18px; }
+.area ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.area li { position: relative; padding-left: 18px; color: var(--texto-suave); font-size: 15px; line-height: 1.45; }
+.area li::before { content: ""; position: absolute; left: 0; top: .55em; width: 7px; height: 7px; border-radius: 2px; background: var(--acento); }
+
+/* Missão, visão e valores */
+.mvv { font-size: 14px; font-weight: 700; font-stretch: 100%; letter-spacing: .2em; text-transform: uppercase; color: var(--acento); margin: 1.2em 0 .4em; }
+.valores { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.valores li { font-size: 14px; font-weight: 600; padding: 8px 14px; border-radius: 999px; border: 1px solid rgb(255 102 0 / .4); background: rgb(255 102 0 / .07); }
+
+/* Galeria da estrutura */
+.galeria { width: 100%; max-width: var(--largura); display: grid; grid-template-columns: 0.75fr 1fr 1fr 0.75fr; grid-auto-rows: 210px; gap: 14px; }
+.foto { margin: 0; overflow: hidden; border-radius: 16px; border: 1px solid var(--linha); position: relative; }
+.foto::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(10 10 11 / .45), transparent 50%); pointer-events: none; }
+.foto img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.85) contrast(1.05); transition: transform .8s var(--ease), filter .5s; }
+.foto:hover img { transform: scale(1.05); filter: none; }
+.foto--alta { grid-row: span 2; }
+.galeria .foto:nth-child(1) { grid-column: 1; }
+.galeria .foto:nth-child(5) { grid-column: 4; grid-row: 1 / span 2; }
+
+@media (max-width: 980px) {
+  .publicos, .cartoes--3 { grid-template-columns: 1fr; }
+  .galeria { grid-template-columns: 1fr 1fr; grid-auto-rows: 160px; }
+  .galeria .foto:nth-child(5) { grid-column: auto; grid-row: span 2; }
+}
+@media (max-width: 560px) {
+  .numeros { grid-template-columns: repeat(3, 1fr); }
+  .lista-icones li { font-size: 15.5px; }
+}
+/* Galeria: a 4ª foto ocupa as duas colunas do meio na segunda linha */
+@media (min-width: 981px) { .galeria .foto:nth-child(4) { grid-column: 2 / span 2; } }
